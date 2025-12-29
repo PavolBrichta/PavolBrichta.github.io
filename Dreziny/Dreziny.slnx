@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Dreziny/dreziny.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
