@@ -24,10 +24,30 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* remove centering so fixed side menu and app layout can control alignment */
   min-width: 320px;
   min-height: 100vh;
+  background-color: inherit;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* global box-sizing and improved defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* make form elements inherit foreground/background for better contrast */
+input,
+textarea,
+select,
+button {
+  color: inherit;
+  background: transparent;
+  font: inherit;
 }
 
 h1 {

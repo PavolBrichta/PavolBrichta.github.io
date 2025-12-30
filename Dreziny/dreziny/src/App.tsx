@@ -1,43 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import SideMenu from './components/SideMenu'
+import Dashboard from './pages/Dashboard'
 import Contact from './pages/Contact'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [page, setPage] = useState<'home' | 'contact'>('home')
-
   return (
     <div className="app-layout">
       <aside className="aside">
-        <SideMenu current={page} setPage={setPage} />
+        <SideMenu />
       </aside>
 
       <main className="main">
-        {page === 'home' ? (
-          <>
-            <div>
-              <a href="https://react.dev" target="_blank" rel="noreferrer">
-                <img src={reactLogo} className="logo react" alt="React logo" />
-              </a>
-            </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-              <button onClick={() => setCount((count) => count + 1)}>
-                count is {count}
-              </button>
-              <p>
-                Edit <code>src/App.tsx</code> and save to test HMR
-              </p>
-            </div>
-            <p className="read-the-docs">
-              Click on the Vite and React logos to learn more
-            </p>
-          </>
-        ) : (
-          <Contact />
-        )}
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
     </div>
   )

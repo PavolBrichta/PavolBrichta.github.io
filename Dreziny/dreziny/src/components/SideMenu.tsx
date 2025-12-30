@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-type Props = {
-	current: 'home' | 'contact'
-	setPage: (p: 'home' | 'contact') => void
-}
-
-export default function SideMenu({ current, setPage }: Props) {
+export default function SideMenu() {
 	const [open, setOpen] = useState(false)
-
-	// close drawer when page changes (mobile)
-	useEffect(() => {
-		setOpen(false)
-	}, [current])
 
 	// close drawer on Escape key
 	useEffect(() => {
@@ -30,6 +21,9 @@ export default function SideMenu({ current, setPage }: Props) {
 		}
 	}, [open])
 
+	const linkClass = ({ isActive }: { isActive: boolean }) =>
+		isActive ? 'active' : undefined
+
 	return (
 		<>
 			<button
@@ -41,36 +35,27 @@ export default function SideMenu({ current, setPage }: Props) {
 				☰
 			</button>
 
-			<nav
-				className={`side-menu ${open ? 'open' : ''}`}
-				role="navigation"
-				aria-hidden={
-					!open &&
-					typeof window !== 'undefined' &&
-					window.innerWidth <= 640
-				}
-			>
+			<nav className={`side-menu ${open ? 'open' : ''}`} role="navigation">
 				<div className="side-menu-inner">
-					<button
-						className={current === 'home' ? 'active' : ''}
-						onClick={() => setPage('home')}
-						aria-current={current === 'home' ? 'page' : undefined}
+					<NavLink
+						to="/"
+						end
+						className={linkClass}
+						onClick={() => setOpen(false)}
 					>
 						Home
-					</button>
-					<button
-						className={current === 'contact' ? 'active' : ''}
-						onClick={() => setPage('contact')}
-						aria-current={current === 'contact' ? 'page' : undefined}
+					</NavLink>
+					<NavLink
+						to="/contact"
+						className={linkClass}
+						onClick={() => setOpen(false)}
 					>
 						Contact
-					</button>
+					</NavLink>
 				</div>
 			</nav>
 
-			{open && (
-				<div className="menu-backdrop" onClick={() => setOpen(false)} />
-			)}
+			{open && <div className="menu-backdrop" onClick={() => setOpen(false)} />}
 		</>
 	)
 }
