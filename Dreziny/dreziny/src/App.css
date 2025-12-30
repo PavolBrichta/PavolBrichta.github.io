@@ -56,17 +56,20 @@
 
 /* side-menu base - kept fixed on desktop, drawer on mobile */
 .side-menu {
+  /* keep fixed positioning but allow column layout */
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   width: 220px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border-right: 1px solid rgba(255,255,255,0.04);
-  box-shadow: 0 0 30px rgba(0,0,0,0.12);
-  box-sizing: border-box;
-  z-index: 50;
+  z-index: 1000; /* bring menu above content */
+  transform: translateX(0); /* desktop default */
 }
 
 /* ensure inner stack is vertical and spans full width */
@@ -75,6 +78,7 @@
   flex-direction: column;
   gap: 0.5rem;
   align-items: stretch;
+  flex: 1 1 auto;
 }
 
 /* style both anchors and buttons inside the menu as full-width items */
@@ -122,13 +126,17 @@
   .side-menu {
     width: 80%;
     max-width: 320px;
-    transform: translateX(-110%);
-    transition: transform 220ms ease;
+    transform: translateX(-110%); /* hidden by default on mobile */
+    transition: transform 260ms cubic-bezier(.2,.9,.2,1);
     border-right: none;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    z-index: 1250; /* menu above backdrop */
+    pointer-events: none; /* avoid intercepting clicks when closed */
+    background: rgba(36, 36, 36, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   }
   .side-menu.open {
     transform: translateX(0);
+    pointer-events: auto;
   }
 
   .main {
@@ -137,21 +145,36 @@
   }
 
   .menu-toggle {
-    display: flex;
+    display: flex !important; /* force visible on mobile */
     align-items: center;
     justify-content: center;
     padding: 0;
     line-height: 1;
-    font-size: 1.1rem;
-    width: 44px;
-    height: 44px;
+    font-size: 1.25rem;
+    width: 56px;   /* larger touch target */
+    height: 56px;
+    z-index: 1400; /* above menu/backdrop */
+    border-radius: 10px;
+    background: rgba(0,0,0,0.65);
+    color: inherit;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
   }
 
   .menu-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 40;
+    background: rgba(0, 0, 0, 0.28);
+    z-index: 1200; /* behind menu but above page */
+  }
+
+  /* fixed language selector becomes static inside drawer on mobile */
+  .language-switcher.fixed-lang {
+    position: static;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    justify-content: flex-start;
   }
 }
 
@@ -250,14 +273,14 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
-  z-index: 100;
+  z-index: 2000;
 }
 
 /* image modal */
 .image-modal {
   position: fixed;
   inset: 0;
-  z-index: 101;
+  z-index: 2001;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -295,7 +318,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 102;
+  z-index: 2002;
   padding: 0;
   line-height: 1;
 }
@@ -307,4 +330,53 @@
 
 .error {
   color: #ff6b6b;
+}
+
+/* language switcher */
+.language-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0;
+}
+
+/* active flag style */
+.lang-btn.active {
+  background: linear-gradient(90deg, #646cff22, #61dafb11);
+  border-color: #646cff88;
+}
+
+/* hover/focus */
+.lang-btn:hover,
+.lang-btn:focus {
+  border-color: #646cff33;
+  outline: none;
+}
+
+/* ensure mobile drawer still shows language switcher at bottom */
+@media (max-width: 640px) {
+  .side-menu {
+    align-items: stretch; /* ensure full-width switcher inside drawer */
+  }
+  .language-switcher {
+    justify-content: flex-start;
+  }
 }

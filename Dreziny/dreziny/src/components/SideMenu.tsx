@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function SideMenu() {
 	const [open, setOpen] = useState(false)
+	const { language, setLanguage, t } = useLanguage()
+	const firstLinkRef = useRef<HTMLElement | null>(null)
 
 	// close drawer on Escape key
 	useEffect(() => {
@@ -21,8 +24,18 @@ export default function SideMenu() {
 		}
 	}, [open])
 
+	// focus first link when opening (mobile)
+	useEffect(() => {
+		if (open) {
+			setTimeout(() => firstLinkRef.current?.focus(), 80)
+		}
+	}, [open])
+
 	const linkClass = ({ isActive }: { isActive: boolean }) =>
 		isActive ? 'active' : undefined
+
+	// simple runtime mobile check (used for aria-hidden)
+	const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 640 : false
 
 	return (
 		<>
@@ -35,30 +48,61 @@ export default function SideMenu() {
 				☰
 			</button>
 
-			<nav className={`side-menu ${open ? 'open' : ''}`} role="navigation">
+			<nav
+				className={`side-menu ${open ? 'open' : ''}`}
+				role="navigation"
+				aria-hidden={isMobile ? !open : false}
+			>
 				<div className="side-menu-inner">
 					<NavLink
 						to="/"
 						end
 						className={linkClass}
 						onClick={() => setOpen(false)}
+						ref={(el) => {
+							if (el && !firstLinkRef.current)
+								firstLinkRef.current = el as unknown as HTMLElement
+						}}
 					>
-						Home
+						{t('home')}
 					</NavLink>
+
 					<NavLink
 						to="/gallery"
 						className={linkClass}
 						onClick={() => setOpen(false)}
 					>
-						Gallery
+						{t('gallery')}
 					</NavLink>
+
 					<NavLink
 						to="/contact"
 						className={linkClass}
 						onClick={() => setOpen(false)}
 					>
-						Contact
+						{t('contact')}
 					</NavLink>
+				</div>
+
+				<div
+					className="language-switcher fixed-lang"
+					role="group"
+					aria-label="Language selector"
+				>
+					<button
+						className={`lang-btn ${language === 'sk' ? 'active' : ''}`}
+						onClick={() => setLanguage('sk')}
+						aria-label="Slovak"
+					>
+						🇸🇰
+					</button>
+					<button
+						className={`lang-btn ${language === 'en' ? 'active' : ''}`}
+						onClick={() => setLanguage('en')}
+						aria-label="English"
+					>
+						🇬🇧
+					</button>
 				</div>
 			</nav>
 

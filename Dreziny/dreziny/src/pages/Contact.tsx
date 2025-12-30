@@ -1,11 +1,14 @@
 import React from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Contact() {
+	const { t } = useLanguage()
+
 	return (
 		<section className="contact-page">
-			<h2>Contact</h2>
+			<h2>{t('contactTitle')}</h2>
 			<p>
-				If you want to get in touch, send an email to{' '}
+				{t('contactDescription')}{' '}
 				<a href="mailto:hello@example.com">hello@example.com</a>.
 			</p>
 
@@ -13,22 +16,22 @@ export default function Contact() {
 				className="contact-form"
 				onSubmit={(e) => {
 					e.preventDefault()
-					alert('Message sent (demo)')
+					alert(t('messageSent'))
 				}}
 			>
 				<label>
-					Name
+					{t('name')}
 					<input name="name" />
 				</label>
 				<label>
-					Email
+					{t('email')}
 					<input name="email" type="email" />
 				</label>
 				<label>
-					Message
+					{t('message')}
 					<textarea name="message" rows={4} />
 				</label>
-				<button type="submit">Send</button>
+				<button type="submit">{t('send')}</button>
 			</form>
 		</section>
 	)

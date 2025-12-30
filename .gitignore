@@ -2,7 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Dreziny/.vs/Dreziny.slnx/FileContentIndex
+/Dreziny/.vs/
 /Dreziny/dreziny/obj/Debug
-/Dreziny/.vs/Dreziny.slnx/v18/.suo
-/Dreziny/.vs/Dreziny.slnx/config/applicationhost.config
+/Dreziny/Drezina/Drezina.Server/obj

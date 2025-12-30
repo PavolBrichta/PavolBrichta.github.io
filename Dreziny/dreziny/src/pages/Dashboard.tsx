@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import reactLogo from '../assets/react.svg'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Dashboard() {
   const [count, setCount] = useState(0)
+  const { t } = useLanguage()
 
   return (
     <>
@@ -11,18 +13,14 @@ export default function Dashboard() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>{t('viteReact')}</h1>
       <div className="card">
         <button onClick={() => setCount((c) => c + 1)}>
-          count is {count}
+          {t('countIs')} {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <p>{t('editCode')}</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <p className="read-the-docs">{t('clickLogos')}</p>
     </>
   )
 }
