@@ -3,5 +3,5 @@
 ################################################################################
 
 /Dreziny/.vs/
-/Dreziny/dreziny/obj/Debug
-/Dreziny/Drezina/Drezina.Server/obj
+/Dreziny/.vs/*
+/Dreziny/dreziny/obj/*
