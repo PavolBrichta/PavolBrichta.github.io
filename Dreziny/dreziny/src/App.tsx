@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <BrowserRouter basename="/Dreziny/">
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="app-layout">
         <aside className="aside">
           <SideMenu />

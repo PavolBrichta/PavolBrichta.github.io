@@ -4,8 +4,17 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 export default function SideMenu() {
 	const [open, setOpen] = useState(false)
+	const [isMobile, setIsMobile] = useState(false)
 	const { language, setLanguage, t } = useLanguage()
 	const firstLinkRef = useRef<HTMLElement | null>(null)
+
+	// detect mobile on mount and resize
+	useEffect(() => {
+		const checkMobile = () => setIsMobile(window.innerWidth <= 640)
+		checkMobile()
+		window.addEventListener('resize', checkMobile)
+		return () => window.removeEventListener('resize', checkMobile)
+	}, [])
 
 	// close drawer on Escape key
 	useEffect(() => {
@@ -34,9 +43,6 @@ export default function SideMenu() {
 	const linkClass = ({ isActive }: { isActive: boolean }) =>
 		isActive ? 'active' : undefined
 
-	// simple runtime mobile check (used for aria-hidden)
-	const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 640 : false
-
 	return (
 		<>
 			<button
@@ -55,7 +61,7 @@ export default function SideMenu() {
 			>
 				<div className="side-menu-inner">
 					<NavLink
-						to="/Dreziny/"
+						to="/"
 						end
 						className={linkClass}
 						onClick={() => setOpen(false)}
@@ -68,7 +74,7 @@ export default function SideMenu() {
 					</NavLink>
 
 					<NavLink
-						to="/Dreziny/gallery"
+						to="/gallery"
 						className={linkClass}
 						onClick={() => setOpen(false)}
 					>
@@ -76,7 +82,7 @@ export default function SideMenu() {
 					</NavLink>
 
 					<NavLink
-						to="/Dreziny/contact"
+						to="/contact"
 						className={linkClass}
 						onClick={() => setOpen(false)}
 					>

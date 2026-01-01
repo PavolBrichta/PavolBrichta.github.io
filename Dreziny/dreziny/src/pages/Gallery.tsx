@@ -28,7 +28,7 @@ export default function Gallery() {
     () =>
       GALLERY_IMAGES.map((filename: string) => ({
         name: filename.replace(/\.[^/.]+$/, ''),
-        url: `/Dreziny/gallery/${filename}`,
+        url: `${import.meta.env.BASE_URL}gallery/${filename}`,
       })),
     []
   )
