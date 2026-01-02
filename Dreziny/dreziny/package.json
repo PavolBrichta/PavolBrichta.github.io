@@ -2,7 +2,7 @@
   "name": "dreziny",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://pavolbrichta.github.io/Dreziny/",
+  "homepage": "https://pavolbrichta.github.io/",
   "type": "module",
   "scripts": {
     "dev": "vite",
