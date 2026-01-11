@@ -11,9 +11,6 @@ export const translations = {
     contactDescription: 'If you want to get in touch, send an email to',
     name: 'Name',
     email: 'Email',
-    message: 'Message',
-    send: 'Send',
-    messageSent: 'Message sent (demo)',
   },
   sk: {
     home: 'Domov',
@@ -27,9 +24,6 @@ export const translations = {
     contactDescription: 'Ak sa chcete spojiť, pošlite e-mail na',
     name: 'Meno',
     email: 'E-mail',
-    message: 'Správa',
-    send: 'Odoslať',
-    messageSent: 'Správa odoslaná (demo)',
   },
 } as const
 

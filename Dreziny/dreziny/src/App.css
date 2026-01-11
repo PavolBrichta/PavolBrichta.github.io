@@ -287,6 +287,21 @@
   justify-content: center;
   padding: 1rem;
 }
+.image-modal-previous, .image-modal-next {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  user-select: none;
+  z-index: 2002;
+}
+.image-modal-next {
+  left: auto;
+  right: 20px;
+}
 
 .modal-image {
   max-width: 90vw;

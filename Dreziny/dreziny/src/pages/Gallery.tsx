@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import ImageModal from '../components/ImageModal'
+import { useLanguage } from '../i18n/LanguageContext'
 
 interface GalleryImage {
   name: string
@@ -22,20 +23,36 @@ const GALLERY_IMAGES = [
 ]
 
 export default function Gallery() {
+  const { t } = useLanguage()
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
 
   const images: GalleryImage[] = useMemo(
     () =>
       GALLERY_IMAGES.map((filename: string) => ({
         name: filename.replace(/\.[^/.]+$/, ''),
-        url: `${import.meta.env.BASE_URL}gallery/${filename}`,
+        url: `${import.meta.env.BASE_URL}gallery/${filename}`
       })),
     []
-  )
+  );
+  const previousImage = () => {
+    if (selectedImage) {
+      const currentIndex = images.findIndex(img => img.name === selectedImage.name);
+      const previousIndex = (currentIndex - 1 + images.length) % images.length;
+      setSelectedImage(images[previousIndex]);
+    }
+  };
+
+  const nextImage = () => {
+    if (selectedImage) {
+      const currentIndex = images.findIndex(img => img.name === selectedImage.name);
+      const nextIndex = (currentIndex + 1) % images.length;
+      setSelectedImage(images[nextIndex]);
+    }
+  };
 
   return (
     <section className="gallery-page">
-      <h2>Gallery</h2>
+      <h2>{t('gallery')}</h2>
       <div className="gallery-grid">
         {images.map((img) => (
           <div
@@ -55,7 +72,12 @@ export default function Gallery() {
         ))}
       </div>
 
-      <ImageModal image={selectedImage} onClose={() => setSelectedImage(null)} />
+      <ImageModal
+        image={selectedImage}
+        onClose={() => setSelectedImage(null)}
+        previous={previousImage}
+        next={nextImage}
+      />
     </section>
   )
 }
