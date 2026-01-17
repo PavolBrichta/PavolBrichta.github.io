@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 
@@ -40,31 +40,28 @@ export default function SideMenu() {
 		}
 	}, [open])
 
-	const linkClass = ({ isActive }: { isActive: boolean }) =>
-		isActive ? 'active' : undefined
+	const linkClass = ({ isActive }: { isActive: boolean }) => isActive ? 'active' : undefined
+
+	const toggleOpenMenu = useCallback(() => { setOpen((s) => !s) }, []);
+	const closeMenu = useCallback(() => { setOpen((s) => !s) }, []);
+	const setLangSk = useCallback(() => {
+		setLanguage('sk');
+		setOpen(false);
+	}, []);
+	const setLangEn = useCallback(() => {
+		setLanguage('en');
+		setOpen(false);
+	}, []);
 
 	return (
 		<>
-			<button
-				className="menu-toggle"
-				aria-label="Toggle menu"
-				aria-expanded={open}
-				onClick={() => setOpen((s) => !s)}
-			>
-				☰
-			</button>
+			{isMobile && (
+				<button className={`menu-toggle ${open ? 'menu-open' : ''}`} aria-label="Toggle menu" aria-expanded={open} onClick={toggleOpenMenu}>☰</button>
+			)}
 
-			<nav
-				className={`side-menu ${open ? 'open' : ''}`}
-				role="navigation"
-				aria-hidden={isMobile ? !open : false}
-			>
+			<nav className={`side-menu ${open ? 'open' : ''}`} role="navigation" aria-hidden={isMobile ? !open : false}>
 				<div className="side-menu-inner">
-					<NavLink
-						to=""
-						end
-						className={linkClass}
-						onClick={() => setOpen(false)}
+					<NavLink to="" end className={linkClass} onClick={closeMenu}
 						ref={(el) => {
 							if (el && !firstLinkRef.current)
 								firstLinkRef.current = el as unknown as HTMLElement
@@ -73,46 +70,22 @@ export default function SideMenu() {
 						{t('home')}
 					</NavLink>
 
-					<NavLink
-						to="gallery"
-						className={linkClass}
-						onClick={() => setOpen(false)}
-					>
+					<NavLink to="gallery" className={linkClass} onClick={closeMenu}>
 						{t('gallery')}
 					</NavLink>
 
-					<NavLink
-						to="contact"
-						className={linkClass}
-						onClick={() => setOpen(false)}
-					>
+					<NavLink to="contact" className={linkClass} onClick={closeMenu}>
 						{t('contact')}
 					</NavLink>
 				</div>
 
-				<div
-					className="language-switcher fixed-lang"
-					role="group"
-					aria-label="Language selector"
-				>
-					<button
-						className={`lang-btn ${language === 'sk' ? 'active' : ''}`}
-						onClick={() => setLanguage('sk')}
-						aria-label="Slovak"
-					>
-						SK
-					</button>
-					<button
-						className={`lang-btn ${language === 'en' ? 'active' : ''}`}
-						onClick={() => setLanguage('en')}
-						aria-label="English"
-					>
-						EN
-					</button>
+				<div className="language-switcher fixed-lang" role="group" aria-label="Language selector">
+					<button className={`lang-btn ${language === 'sk' ? 'active' : ''}`} onClick={setLangSk} aria-label="Slovak">SK</button>
+					<button className={`lang-btn ${language === 'en' ? 'active' : ''}`} onClick={setLangEn} aria-label="English">EN</button>
 				</div>
 			</nav>
 
-			{open && <div className="menu-backdrop" onClick={() => setOpen(false)} />}
+			{open && <div className="menu-backdrop" onClick={closeMenu} />}
 		</>
 	)
 }

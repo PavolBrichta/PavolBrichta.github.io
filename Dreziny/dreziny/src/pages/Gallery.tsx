@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import ImageModal from '../components/ImageModal'
 import { useLanguage } from '../i18n/LanguageContext'
 
@@ -49,9 +49,12 @@ export default function Gallery() {
       setSelectedImage(images[nextIndex]);
     }
   };
+  const closeModal = useCallback(() => {
+    setSelectedImage(null)
+  }, []);
 
   return (
-    <section className="gallery-page">
+    <section className="page">
       <h2>{t('gallery')}</h2>
       <div className="gallery-grid">
         {images.map((img) => (
@@ -74,7 +77,7 @@ export default function Gallery() {
 
       <ImageModal
         image={selectedImage}
-        onClose={() => setSelectedImage(null)}
+        onClose={closeModal}
         previous={previousImage}
         next={nextImage}
       />

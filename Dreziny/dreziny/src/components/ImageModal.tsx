@@ -10,11 +10,26 @@ type Props = {
 export default function ImageModal({ image, onClose, previous, next }: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape' || e.key === 'ArrowUp' || e.key === 'ArrowDown') onClose();
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose]);
+
+  useEffect(() => {
+    const onKeyPrevious = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') previous()
+    }
+    document.addEventListener('keydown', onKeyPrevious)
+    return () => document.removeEventListener('keydown', onKeyPrevious)
+  }, [previous]);
+  useEffect(() => {
+    const onKeyNext = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') next()
+    }
+    document.addEventListener('keydown', onKeyNext)
+    return () => document.removeEventListener('keydown', onKeyNext)
+  }, [next]);
 
   if (!image) return null
 

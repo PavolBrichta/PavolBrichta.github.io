@@ -1,55 +1,19 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  max-width: 100%;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
-}
-
 /* overall app layout */
 .app-layout {
   display: flex;
   min-height: 100vh;
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 1rem;
-  gap: 1rem;
   box-sizing: border-box;
   align-items: flex-start;
 }
@@ -66,8 +30,8 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-right: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+  border-right: 1px solid rgba(0,0,0,0.4);
   z-index: 1000; /* bring menu above content */
   transform: translateX(0); /* desktop default */
 }
@@ -110,15 +74,74 @@
 .side-menu a.active,
 .side-menu button.active {
   background: linear-gradient(90deg, #646cff22, #61dafb11);
+  border-color: #646cffc0;
+}
+.main {
+  margin-left: 240px; /* leave space for fixed menu */
+  padding: 0.3rem;
+  max-width: 100%;
+}
+/* center the hamburger icon precisely on desktop/hide toggle on desktop */
+.menu-toggle {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 12px;
+  left: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #646cff22, #61dafb11);
+  color: black;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.25rem;
+  border: 1px solid rgba(5, 0, 68,0.9);
+  box-shadow: 0 6px 18px rgba(5, 0, 68, 0.4);
+  z-index: 1400; /* above menu/backdrop */
+  display: flex !important; /* force visible on mobile */
+}
+.menu-toggle.menu-open {
+  color: white;
+}
+
+/* language switcher */
+.language-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.lang-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0;
+}
+
+/* active flag style */
+.lang-btn.active {
+  background: linear-gradient(90deg, #646cff22, #61dafb11);
   border-color: #646cff88;
 }
 
-/* push main content to the right on desktop */
-@media (min-width: 641px) {
-  .main {
-    margin-left: 240px; /* leave space for fixed menu */
-    padding: 1rem;
-  }
+/* hover/focus */
+.lang-btn:hover,
+.lang-btn:focus {
+  border-color: #646cff33;
+  outline: none;
 }
 
 /* mobile drawer behavior */
@@ -128,37 +151,24 @@
     max-width: 320px;
     transform: translateX(-110%); /* hidden by default on mobile */
     transition: transform 260ms cubic-bezier(.2,.9,.2,1);
-    border-right: none;
     z-index: 1250; /* menu above backdrop */
     pointer-events: none; /* avoid intercepting clicks when closed */
-    background: rgba(36, 36, 36, 0.95);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    background: rgba(5, 0, 68, 0.85);
+    box-shadow: 0 8px 24px rgba(5, 0, 68, 0.45);
+    color: white;
+    align-items: stretch; /* ensure full-width switcher inside drawer */
   }
   .side-menu.open {
     transform: translateX(0);
     pointer-events: auto;
   }
+  .side-menu .side-menu-inner {
+    margin-top: 50px;
+  }
 
   .main {
     margin-left: 0;
-    padding-top: 64px; /* space for toggle */
-  }
-
-  .menu-toggle {
-    display: flex !important; /* force visible on mobile */
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    line-height: 1;
-    font-size: 1.25rem;
-    width: 56px;   /* larger touch target */
-    height: 56px;
-    z-index: 1400; /* above menu/backdrop */
-    border-radius: 10px;
-    background: rgba(0,0,0,0.65);
-    color: inherit;
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    margin-top: 25px;
   }
 
   .menu-backdrop {
@@ -178,24 +188,6 @@
   }
 }
 
-/* center the hamburger icon precisely on desktop/hide toggle on desktop */
-.menu-toggle {
-  display: none;
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 70;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.6);
-  color: inherit;
-  border: 1px solid transparent;
-  font-size: 1.1rem;
-  padding: 0;
-  line-height: 1;
-}
-
 /* contact form tweaks to match theme */
 .contact-form input,
 .contact-form textarea {
@@ -207,7 +199,7 @@
 }
 
 /* contact page small tweaks */
-.contact-page {
+.page {
   max-width: 700px;
   margin: 0 auto;
 }
@@ -220,12 +212,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-}
-
-/* gallery page */
-.gallery-page {
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 .gallery-grid {
@@ -345,53 +331,4 @@
 
 .error {
   color: #ff6b6b;
-}
-
-/* language switcher */
-.language-switcher {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  align-items: center;
-  justify-content: center;
-}
-
-.lang-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.06);
-  cursor: pointer;
-  font-size: 1.25rem;
-  line-height: 1;
-  padding: 0;
-}
-
-/* active flag style */
-.lang-btn.active {
-  background: linear-gradient(90deg, #646cff22, #61dafb11);
-  border-color: #646cff88;
-}
-
-/* hover/focus */
-.lang-btn:hover,
-.lang-btn:focus {
-  border-color: #646cff33;
-  outline: none;
-}
-
-/* ensure mobile drawer still shows language switcher at bottom */
-@media (max-width: 640px) {
-  .side-menu {
-    align-items: stretch; /* ensure full-width switcher inside drawer */
-  }
-  .language-switcher {
-    justify-content: flex-start;
-  }
 }
