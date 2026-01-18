@@ -4,6 +4,8 @@ import Dashboard from './pages/Dashboard'
 import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
 import { Routes, Route, HashRouter } from 'react-router-dom'
+import Trails from './pages/Trails'
+import Activities from './pages/Activities'
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
         <main className="main">
           <Routes>
             <Route index element={<Dashboard />} />
-            <Route path="contact" element={<Contact />} />
+            <Route path="trails" element={<Trails />} />
+            <Route path="activities" element={<Activities />} />
             <Route path="gallery" element={<Gallery />} />
+            <Route path="contact" element={<Contact />} />
           </Routes>
         </main>
       </div>

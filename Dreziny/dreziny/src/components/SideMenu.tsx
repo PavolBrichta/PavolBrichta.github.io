@@ -27,6 +27,9 @@ export default function SideMenu() {
 
 	// hide body scroll when drawer is open
 	useEffect(() => {
+		if (!isMobile) {
+			return;
+		}
 		document.body.style.overflow = open ? 'hidden' : ''
 		return () => {
 			document.body.style.overflow = ''
@@ -52,6 +55,10 @@ export default function SideMenu() {
 		setLanguage('en');
 		setOpen(false);
 	}, []);
+	const setLangDe = useCallback(() => {
+		setLanguage('de');
+		setOpen(false);
+	}, []);
 
 	return (
 		<>
@@ -70,6 +77,14 @@ export default function SideMenu() {
 						{t('home')}
 					</NavLink>
 
+					<NavLink to="trails" className={linkClass} onClick={closeMenu}>
+						{t('trails')}
+					</NavLink>
+
+					<NavLink to="activities" className={linkClass} onClick={closeMenu}>
+						{t('activities')}
+					</NavLink>
+
 					<NavLink to="gallery" className={linkClass} onClick={closeMenu}>
 						{t('gallery')}
 					</NavLink>
@@ -82,6 +97,7 @@ export default function SideMenu() {
 				<div className="language-switcher fixed-lang" role="group" aria-label="Language selector">
 					<button className={`lang-btn ${language === 'sk' ? 'active' : ''}`} onClick={setLangSk} aria-label="Slovak">SK</button>
 					<button className={`lang-btn ${language === 'en' ? 'active' : ''}`} onClick={setLangEn} aria-label="English">EN</button>
+					<button className={`lang-btn ${language === 'de' ? 'active' : ''}`} onClick={setLangDe} aria-label="German">DE</button>
 				</div>
 			</nav>
 

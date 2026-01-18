@@ -78,7 +78,7 @@
 }
 .main {
   margin-left: 240px; /* leave space for fixed menu */
-  padding: 0.3rem;
+  padding: 0.3rem 0.3rem 2rem 0.3rem;
   max-width: 100%;
 }
 /* center the hamburger icon precisely on desktop/hide toggle on desktop */
