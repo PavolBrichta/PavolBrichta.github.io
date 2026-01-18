@@ -5,14 +5,14 @@ export default function Contact() {
 
 	return (
 		<section className="page">
-			<h2>{t('contactTitle')}</h2>
+			<h2>{t('contact')}</h2>
 			<p>
 				{t('contactDescription')}{' '}
 				<a href="mailto:hello@example.com">briketaraketa@gmail.com</a>
-				{' '}{t('orCall')}{' '}<a href="tel:+421 908 082 881">0908 082 881</a>.
+				{' '}{t('contactOrCall')}{' '}<a href="tel:+421 908 082 881">0908 082 881</a>.
 			</p>
 			<p>
-				{t('location')}
+				{t('contactLocation')}
 			</p>
 			<p>
 				<iframe
@@ -23,10 +23,10 @@ export default function Contact() {
 					loading="lazy"></iframe>
 			</p>
 			<p>
-				{t('openingHours')}
+				{t('contactOpeningHours')}
 			</p>
 			<p>
-				{t('price')}28,50 €.
+				{t('contactPrice')}28,50 €.
 			</p>
 		</section>
 	)
