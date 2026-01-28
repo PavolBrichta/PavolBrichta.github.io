@@ -16,13 +16,15 @@ function App() {
         </aside>
 
         <main className="main">
-          <Routes>
-            <Route index element={<Dashboard />} />
-            <Route path="trails" element={<Trails />} />
-            <Route path="activities" element={<Activities />} />
-            <Route path="gallery" element={<Gallery />} />
-            <Route path="contact" element={<Contact />} />
-          </Routes>
+          <div className='page-container'>
+            <Routes>
+              <Route index element={<Dashboard />} />
+              <Route path="trails" element={<Trails />} />
+              <Route path="activities" element={<Activities />} />
+              <Route path="gallery" element={<Gallery />} />
+              <Route path="contact" element={<Contact />} />
+            </Routes>
+          </div>
         </main>
       </div>
     </HashRouter>

@@ -4,7 +4,7 @@ export default function Trails() {
 	const { t } = useLanguage()
 
 	return (
-		<section className="page">
+		<section className="page page-limited-width">
 			<h2>{t('trailsTrail1')}</h2>
 			<p>
 				{t('trailsLocation')}

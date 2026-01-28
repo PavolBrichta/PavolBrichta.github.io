@@ -4,7 +4,7 @@ export default function Activities() {
 	const { t } = useLanguage()
 
 	return (
-		<section className="page">
+		<section className="page page-limited-width">
 			<div className='card'>
 				<h2>{t('activitiesSport')}</h2>
 				<div>

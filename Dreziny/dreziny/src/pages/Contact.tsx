@@ -4,7 +4,7 @@ export default function Contact() {
 	const { t } = useLanguage()
 
 	return (
-		<section className="page">
+		<section className="page page-limited-width">
 			<h2>{t('contact')}</h2>
 			<p>
 				{t('trailsDescription')}{' '}

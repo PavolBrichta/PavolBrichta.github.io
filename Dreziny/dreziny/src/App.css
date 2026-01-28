@@ -184,6 +184,36 @@
   }
 }
 
+.page-container {
+    background-image: url('/dashboard-2.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    height: 100vh;
+    width: calc(100vw - 220px);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+@media (max-width: 640px) {
+    .page-container {
+        width: 100vw;
+    }    
+}
+.page {
+    margin: 0 auto;
+    max-width: 1200px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.02) 5%, rgba(255, 255, 255, 0.02) 95%, transparent);
+    padding: 2rem;
+    border-radius: 50px;
+    backdrop-filter: blur(2px);
+}
+.page-limited-width {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 /* contact form tweaks to match theme */
 .contact-form input,
 .contact-form textarea {
@@ -195,10 +225,6 @@
 }
 
 /* contact page small tweaks */
-.page {
-  max-width: 700px;
-  margin: 0 auto;
-}
 .contact-form {
   display: grid;
   gap: 0.6rem;

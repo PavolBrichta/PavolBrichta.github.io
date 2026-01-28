@@ -1,30 +1,3 @@
-.dashboard-container {
-    background-image: url('/dashboard-2.png');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    height: 100vh;
-    width: calc(100vw - 220px);
-    overflow-y: auto;
-    box-sizing: border-box;
-}
-@media (max-width: 640px) {
-    .dashboard-container {
-        width: 100vw;
-    }    
-}
-
-.dashboard-content-wrapper {
-    margin: 0 auto;
-    max-width: 700px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.02) 5%, rgba(255, 255, 255, 0.02) 95%, transparent);
-    padding: 2rem;
-    border-radius: 50px;
-    backdrop-filter: blur(2px);
-}
-
 .description-paragraph {
     margin-bottom: 15px;
 }
