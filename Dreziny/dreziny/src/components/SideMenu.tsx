@@ -59,6 +59,10 @@ export default function SideMenu() {
 		setLanguage('de');
 		setOpen(false);
 	}, []);
+	const setLangHu = useCallback(() => {
+		setLanguage('hu');
+		setOpen(false);
+	}, []);
 
 	return (
 		<>
@@ -98,6 +102,7 @@ export default function SideMenu() {
 					<button className={`lang-btn ${language === 'sk' ? 'active' : ''}`} onClick={setLangSk} aria-label="Slovak">SK</button>
 					<button className={`lang-btn ${language === 'en' ? 'active' : ''}`} onClick={setLangEn} aria-label="English">EN</button>
 					<button className={`lang-btn ${language === 'de' ? 'active' : ''}`} onClick={setLangDe} aria-label="German">DE</button>
+					<button className={`lang-btn ${language === 'hu' ? 'active' : ''}`} onClick={setLangHu} aria-label="Hungarian">HU</button>
 				</div>
 			</nav>
 

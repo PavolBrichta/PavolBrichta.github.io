@@ -64,7 +64,29 @@ export const translations = {
     activitiesSport: 'Sportliche Aktivitäten',
     activitiesSocial: 'Soziale Aktivitäten',
     contactOperationalRegulations: 'Betriebsordnung',
-  }
+  },
+  hu: {
+    home: 'Kezdőlap',
+    trails: 'Útvonalak',
+    gallery: 'Galéria',
+    contact: 'Kapcsolat',
+    activities: 'Tevékenységek',
+    homeTitle: 'Ha különleges szórakozást keres, jó helyen jár!',
+    homeDescription1: 'Próbálja ki a draiszinázást! A draiszinák nagyszerű módjai annak, hogy a természetben töltse az időt családjával és barátaival. Fedezze fel a környezet szépségét egy másik perspektívából, és élvezzen egy felejthetetlen élményt.',
+    homeDescription2: 'Foglalja le draiszináját még ma, és készüljön fel egy kalandra, amely tele van szórakozással és nevetéssel!',
+    homeDescription3: 'Draiszina kínálatunk minden korosztály számára megfelelő, és biztonságos és kényelmes utazást garantál.',
+    homeDescription4: 'Draiszináink úgy vannak kialakítva, hogy maximális kényelmet és biztonságot nyújtsanak az utazás során. Draiszináinkkal gyönyörű útvonalakat fedezhet fel, és élvezheti a természet szépségét.',
+    homeDescription5: 'Várjuk látogatását, és kellemes draiszinázást kívánunk!',
+    trailsTrail1: 'Útvonal 1: Jablonica - Brezova pod Bradlom',
+    trailsDescription: 'Foglalásokért elérhet minket az alábbi e-mail címen',
+    trailsOrCall: 'vagy hívjon minket a következő számon',
+    trailsLocation: 'Az útvonal Jablonicában kezdődik és Brezova pod Bradlom-ban ér véget. Ebben az irányban 9:00 és 12:00 óra között közlekedünk. Ellenkező irányban, Brezova pod Bradlom-ból 13:00 és 15:00 óra között közlekedünk.',
+    trailsOpeningHours: 'A működés márciustól szeptemberig minden nap nyitva tart, kedden és vasárnap között.',
+    trailsPrice: 'Ár: ',
+    activitiesSport: 'Sporttevékenységek',
+    activitiesSocial: 'Társadalmi tevékenységek',
+    contactOperationalRegulations: 'Üzemeltetési szabályzat',
+  },
 } as const
 
 export type Language = keyof typeof translations
