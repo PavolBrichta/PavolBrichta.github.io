@@ -1,6 +1,5 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
 }
 
@@ -13,7 +12,8 @@
   display: flex;
   min-height: 100vh;
   max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   box-sizing: border-box;
   align-items: flex-start;
 }
@@ -77,9 +77,9 @@
   border-color: #646cffc0;
 }
 .main {
-  margin-left: 240px; /* leave space for fixed menu */
-  padding: 0.3rem 0.3rem 2rem 0.3rem;
+  margin-left: 220px; /* leave space for fixed menu */
   max-width: 100%;
+  width: 100%;
 }
 /* center the hamburger icon precisely on desktop/hide toggle on desktop */
 .menu-toggle {
@@ -168,7 +168,6 @@
 
   .main {
     margin-left: 0;
-    margin-top: 25px;
   }
 
   .menu-backdrop {
