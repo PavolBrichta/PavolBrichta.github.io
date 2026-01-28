@@ -7,7 +7,7 @@ export default function Dashboard() {
   return (
     <div className='dashboard-container'>
       <section className="page">
-        <div>
+        <div className="dashboard-content-wrapper">
           <h1>{t('homeTitle')}</h1>
           <div className='description-paragraph'>
             {t('homeDescription1')}
