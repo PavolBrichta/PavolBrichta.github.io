@@ -1,6 +1,10 @@
 import './Speedometer.css'
-import { useLanguage } from '../i18n/LanguageContext'
 import { useEffect, useState } from 'react';
+
+import ReactSpeedometer from "react-d3-speedometer";
+
+import { useLanguage } from '../i18n/LanguageContext';
+
 
 export default function Speedometer() {
   const { t } = useLanguage();
@@ -133,6 +137,17 @@ export default function Speedometer() {
             Presnosť GPS: ± {Math.round(accuracy)} m
           </p>
         )}
+
+        <ReactSpeedometer
+          value={speed}
+          minValue={0}
+          maxValue={50}
+          segments={5}
+          needleColor="#464A4F"
+          startColor="#10b981"
+          endColor="#ef4444"
+          textColor="#1f2937"
+        />
 
       </div>
     </section>
