@@ -6,6 +6,7 @@ import Gallery from './pages/Gallery'
 import { Routes, Route, HashRouter } from 'react-router-dom'
 import Trails from './pages/Trails'
 import Activities from './pages/Activities'
+import Speedometer from './pages/Speedometer'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="activities" element={<Activities />} />
               <Route path="gallery" element={<Gallery />} />
               <Route path="contact" element={<Contact />} />
+              <Route path="speedometer" element={<Speedometer />} />
             </Routes>
           </div>
         </main>

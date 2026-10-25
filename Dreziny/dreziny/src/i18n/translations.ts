@@ -20,6 +20,8 @@ export const translations = {
     activitiesSport: 'Sport Activities',
     activitiesSocial: 'Social Activities',
     contactOperationalRegulations: 'Operational regulations',
+    speedometerTitle: 'Speedometer',
+    speedometerDescription: 'Measure your speed. Watch out for maximum of 15km/h before road crossing. Enjoy your ride!',
   },
   sk: {
     home: 'Domov',
@@ -42,6 +44,8 @@ export const translations = {
     activitiesSport: 'Športové aktivity',
     activitiesSocial: 'Spoločenské aktivity',
     contactOperationalRegulations: 'Prevádzkový poriadok',
+    speedometerTitle: 'Tachometer',
+    speedometerDescription: 'Zmerajte si svoju rýchlosť. Dávajte pozor na maximálnu rýchlosť 15 km/h pred priecestím. Užite si jazdu!',
   },
   de: {
     home: 'Startseite',
@@ -64,6 +68,8 @@ export const translations = {
     activitiesSport: 'Sportliche Aktivitäten',
     activitiesSocial: 'Soziale Aktivitäten',
     contactOperationalRegulations: 'Betriebsordnung',
+    speedometerTitle: 'Tachometer',
+    speedometerDescription: 'Messen Sie Ihre Geschwindigkeit. Achten Sie auf maximal 15 km/h vor dem Bahnübergang. Genießen Sie Ihre Fahrt!',
   },
   hu: {
     home: 'Kezdőlap',
@@ -86,6 +92,8 @@ export const translations = {
     activitiesSport: 'Sporttevékenységek',
     activitiesSocial: 'Társadalmi tevékenységek',
     contactOperationalRegulations: 'Üzemeltetési szabályzat',
+    speedometerTitle: 'Sebességmérő',
+    speedometerDescription: 'Mérje meg a sebességét. Vigyázzon a maximális 15 km/h sebességre az útátjáró előtt. Élvezze az utazást!',
   },
 } as const
 

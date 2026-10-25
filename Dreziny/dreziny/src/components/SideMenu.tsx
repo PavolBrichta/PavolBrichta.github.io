@@ -96,6 +96,10 @@ export default function SideMenu() {
 					<NavLink to="contact" className={linkClass} onClick={closeMenu}>
 						{t('contact')}
 					</NavLink>
+
+					<NavLink to="speedometer" className={linkClass} onClick={closeMenu}>
+						{t('speedometerTitle')}
+					</NavLink>
 				</div>
 
 				<div className="language-switcher fixed-lang" role="group" aria-label="Language selector">
