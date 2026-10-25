@@ -22,6 +22,9 @@ export const translations = {
     contactOperationalRegulations: 'Operational regulations',
     speedometerTitle: 'Speedometer',
     speedometerDescription: 'Measure your speed. Watch out for maximum of 15km/h before road crossing. Enjoy your ride!',
+    speedometerStartButton: 'Start measuring',
+    speedometerStopButton: 'Stop measuring',
+    speedometerAccuracy: 'GPS accuracy: ± {accuracy} m',
   },
   sk: {
     home: 'Domov',
@@ -46,6 +49,9 @@ export const translations = {
     contactOperationalRegulations: 'Prevádzkový poriadok',
     speedometerTitle: 'Tachometer',
     speedometerDescription: 'Zmerajte si svoju rýchlosť. Dávajte pozor na maximálnu rýchlosť 15 km/h pred priecestím. Užite si jazdu!',
+    speedometerStartButton: 'Začať meranie',
+    speedometerStopButton: 'Zastaviť meranie',
+    speedometerAccuracy: 'Presnosť GPS: ± {accuracy} m',
   },
   de: {
     home: 'Startseite',
@@ -70,6 +76,9 @@ export const translations = {
     contactOperationalRegulations: 'Betriebsordnung',
     speedometerTitle: 'Tachometer',
     speedometerDescription: 'Messen Sie Ihre Geschwindigkeit. Achten Sie auf maximal 15 km/h vor dem Bahnübergang. Genießen Sie Ihre Fahrt!',
+    speedometerStartButton: 'Messung starten',
+    speedometerStopButton: 'Messung stoppen',
+    speedometerAccuracy: 'GPS-Genauigkeit: ± {accuracy} m',
   },
   hu: {
     home: 'Kezdőlap',
@@ -94,6 +103,9 @@ export const translations = {
     contactOperationalRegulations: 'Üzemeltetési szabályzat',
     speedometerTitle: 'Sebességmérő',
     speedometerDescription: 'Mérje meg a sebességét. Vigyázzon a maximális 15 km/h sebességre az útátjáró előtt. Élvezze az utazást!',
+    speedometerStartButton: 'Začať meranie',
+    speedometerStopButton: 'Zastaviť meranie',
+    speedometerAccuracy: 'Presnosť GPS: ± {accuracy} m',
   },
 } as const
 

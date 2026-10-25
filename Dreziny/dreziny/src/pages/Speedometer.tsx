@@ -98,6 +98,10 @@ export default function Speedometer() {
           {speed} <span style={{ fontSize: '24px' }}>km/h</span>
         </div>
 
+        <p style={{ fontSize: '14px', color: '#666' }}>
+            {t('speedometerAccuracy').replace('{accuracy}', Math.round(accuracy ?? 0).toString())}
+        </p>
+
         <div style={{ marginTop: '20px' }}>
           {!isTracking ? (
             <button 
@@ -112,7 +116,7 @@ export default function Speedometer() {
                 cursor: 'pointer' 
               }}
             >
-              Spustiť meranie
+              {t('speedometerStartButton')}
             </button>
           ) : (
             <button 
@@ -127,17 +131,11 @@ export default function Speedometer() {
                 cursor: 'pointer' 
               }}
             >
-              Zastaviť meranie
+              {t('speedometerStopButton')}
             </button>
           )}
         </div>
         
-        {accuracy && (
-          <p style={{ fontSize: '14px', color: '#666' }}>
-            Presnosť GPS: ± {Math.round(accuracy)} m
-          </p>
-        )}
-
         <ReactSpeedometer
           value={speed}
           minValue={0}
