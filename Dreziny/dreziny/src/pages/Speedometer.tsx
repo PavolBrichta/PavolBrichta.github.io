@@ -19,7 +19,7 @@ export default function Speedometer() {
 
     if (isTracking) {
       if (!navigator.geolocation) {
-        setError('Geolokácia nie je podporovaná týmto prehliadačom.');
+        setError(t('speedometerErrorPositionUnavailable'));
         setIsTracking(false);
         return;
       }
@@ -52,16 +52,16 @@ export default function Speedometer() {
         (err: any) => {
           switch (err.code) {
             case err.PERMISSION_DENIED:
-              setError('Prístup k polohe bol zamietnutý. Povoľte GPS v nastaveniach prehliadača.');
+              setError(t('speedometerErrorAccessDenied'));
               break;
             case err.POSITION_UNAVAILABLE:
-              setError('Informácie o polohe nie sú dostupné.');
+              setError(t('speedometerErrorPositionUnavailable'));
               break;
             case err.TIMEOUT:
-              setError('Vypršal časový limit na získanie polohy.');
+              setError(t('speedometerErrorTimeout'));
               break;
             default:
-              setError('Nastala neznáma chyba.');
+              setError(t('speedometerErrorUnknown'));
           }
           setIsTracking(false);
         },

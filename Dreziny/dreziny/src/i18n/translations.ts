@@ -25,6 +25,10 @@ export const translations = {
     speedometerStartButton: 'Start measuring',
     speedometerStopButton: 'Stop measuring',
     speedometerAccuracy: 'GPS accuracy: ± {accuracy} m',
+    speedometerErrorAccessDenied: 'Access to location denied. Please enable location services in your browser settings.',
+    speedometerErrorPositionUnavailable: 'Location information is unavailable. Please check your device settings and try again.',
+    speedometerErrorTimeout: 'The request to get your location timed out. Please try again.',
+    speedometerErrorUnknown: 'An unknown error occurred while trying to access your location. Please try again.',
   },
   sk: {
     home: 'Domov',
@@ -52,6 +56,10 @@ export const translations = {
     speedometerStartButton: 'Začať meranie',
     speedometerStopButton: 'Zastaviť meranie',
     speedometerAccuracy: 'Presnosť GPS: ± {accuracy} m',
+    speedometerErrorAccessDenied: 'Prístup k polohe bol zamietnutý. Povoľte GPS v nastaveniach prehliadača.',
+    speedometerErrorPositionUnavailable: 'Informácie o polohe nie sú dostupné. Skontrolujte nastavenia zariadenia a skúste to znova.',
+    speedometerErrorTimeout: 'Žiadosť o získanie vašej polohy vypršala. Skúste to znova.',
+    speedometerErrorUnknown: 'Pri pokuse o prístup k vašej polohe došlo k neznámej chybe. Skúste to znova.',
   },
   de: {
     home: 'Startseite',
@@ -79,6 +87,10 @@ export const translations = {
     speedometerStartButton: 'Messung starten',
     speedometerStopButton: 'Messung stoppen',
     speedometerAccuracy: 'GPS-Genauigkeit: ± {accuracy} m',
+    speedometerErrorAccessDenied: 'Zugriff auf den Standort verweigert. Bitte aktivieren Sie die Standortdienste in Ihren Browsereinstellungen.',
+    speedometerErrorPositionUnavailable: 'Standortinformationen sind nicht verfügbar. Bitte überprüfen Sie Ihre Geräteeinstellungen und versuchen Sie es erneut.',
+    speedometerErrorTimeout: 'Die Anfrage, Ihren Standort zu ermitteln, ist abgelaufen. Bitte versuchen Sie es erneut.',
+    speedometerErrorUnknown: 'Beim Versuch, auf Ihren Standort zuzugreifen, ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es erneut.',
   },
   hu: {
     home: 'Kezdőlap',
@@ -106,6 +118,10 @@ export const translations = {
     speedometerStartButton: 'Začať meranie',
     speedometerStopButton: 'Zastaviť meranie',
     speedometerAccuracy: 'Presnosť GPS: ± {accuracy} m',
+    speedometerErrorAccessDenied: 'A helyhez való hozzáférés megtagadva. Kérjük, engedélyezze a helymeghatározó szolgáltatásokat a böngésző beállításaiban.',
+    speedometerErrorPositionUnavailable: 'A helyinformációk nem elérhetők. Kérjük, ellenőrizze az eszköz beállításait, és próbálja újra.',
+    speedometerErrorTimeout: 'A helyének lekérése időtúllépés miatt megszakadt. Kérjük, próbálja újra.',
+    speedometerErrorUnknown: 'Ismeretlen hiba történt a helyéhez való hozzáférés során. Kérjük, próbálja újra.',
   },
 } as const
 
