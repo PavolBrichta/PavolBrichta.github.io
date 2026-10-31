@@ -5,6 +5,10 @@ import ReactSpeedometer from "react-d3-speedometer";
 
 import { useLanguage } from '../i18n/LanguageContext';
 
+const MAX_GPS_ACCURACY_METERS = 20;
+const SPEED_SAMPLE_COUNT = 5;
+const MIN_SPEED_SAMPLES = 3;
+
 
 export default function Speedometer() {
   const { t } = useLanguage();
@@ -69,6 +73,7 @@ export default function Speedometer() {
 
   useEffect(() => {
     let watchId = null;
+    const recentSpeeds: number[] = [];
 
     if (isTracking) {
       if (!navigator.geolocation) {
@@ -86,21 +91,34 @@ export default function Speedometer() {
       // Sleduje pohyb zariadenia v reálnom čase
       watchId = navigator.geolocation.watchPosition(
         (position) => {
+          setAccuracy(position.coords.accuracy);
+          setError(null);
+          if (position.coords.accuracy > MAX_GPS_ACCURACY_METERS) {
+            recentSpeeds.length = 0;
+            return;
+          }
+
           // position.coords.speed je v metroch za sekundu (m/s)
           const speedMps = position.coords.speed;
           
           if (speedMps !== null && speedMps >= 0) {
             // Prepočet m/s na km/h (* 3.6)
             const speedKmh = speedMps * 3.6;
-            setSpeed(Math.round(speedKmh * 10) / 10);
+            recentSpeeds.push(speedKmh);
+            if (recentSpeeds.length > SPEED_SAMPLE_COUNT) recentSpeeds.shift();
+
+            if (recentSpeeds.length >= MIN_SPEED_SAMPLES) {
+              const sortedSpeeds = [...recentSpeeds].sort((a, b) => a - b);
+              const medianSpeed = sortedSpeeds[Math.floor(sortedSpeeds.length / 2)];
+              setSpeed(Math.round(medianSpeed * 10) / 10);
+            }
           } else {
+            recentSpeeds.length = 0;
             // Niektoré prehliadače/zariadenia nevracajú speed priamo, 
             // vtedy ukážeme 0 (alebo by sa musela dopočítat z predošlých súradníc)
             setSpeed(0);
           }
 
-          setAccuracy(position.coords.accuracy);
-          setError(null);
         },
         (err: GeolocationPositionError) => {
           switch (err.code) {
