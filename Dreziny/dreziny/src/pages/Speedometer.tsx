@@ -148,6 +148,7 @@ export default function Speedometer() {
           startColor="#10b981"
           endColor="#ef4444"
           textColor="#1f2937"
+          height={160}
         />
 
         <div style={{ 
