@@ -86,6 +86,17 @@ export default function Speedometer() {
       <div>
         {error && <p style={{ color: '#ff4d4d', maxWidth: '300px', margin: '0 auto 15px' }}>{error}</p>}
 
+        <ReactSpeedometer
+          value={speed}
+          minValue={0}
+          maxValue={50}
+          segments={5}
+          needleColor="#464A4F"
+          startColor="#10b981"
+          endColor="#ef4444"
+          textColor="#1f2937"
+        />
+
         <div style={{ 
           fontSize: '64px', 
           fontWeight: 'bold', 
@@ -135,18 +146,6 @@ export default function Speedometer() {
             </button>
           )}
         </div>
-        
-        <ReactSpeedometer
-          value={speed}
-          minValue={0}
-          maxValue={50}
-          segments={5}
-          needleColor="#464A4F"
-          startColor="#10b981"
-          endColor="#ef4444"
-          textColor="#1f2937"
-        />
-
       </div>
     </section>
   )
