@@ -15,6 +15,59 @@ export default function Speedometer() {
   const [isTracking, setIsTracking] = useState(false);
 
   useEffect(() => {
+    if (!('wakeLock' in navigator)) return;
+
+    let active = true;
+    let wakeLock: WakeLockSentinel | null = null;
+    let requestPending = false;
+    let requestAgain = false;
+
+    const requestWakeLock = async () => {
+      if (!active || document.visibilityState !== 'visible') return;
+      if (requestPending) {
+        requestAgain = true;
+        return;
+      }
+
+      requestPending = true;
+      try {
+        const sentinel = await navigator.wakeLock.request('screen');
+        if (active) {
+          wakeLock = sentinel;
+        } else {
+          await sentinel.release();
+        }
+      } catch (requestError) {
+        if (active) console.warn('Unable to keep the screen awake:', requestError);
+      } finally {
+        requestPending = false;
+        const shouldRetry = requestAgain && active && document.visibilityState === 'visible';
+        requestAgain = false;
+        if (shouldRetry) {
+          void requestWakeLock();
+        }
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        void requestWakeLock();
+      } else {
+        wakeLock = null;
+      }
+    };
+
+    void requestWakeLock();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      active = false;
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (wakeLock) void wakeLock.release();
+    };
+  }, []);
+
+  useEffect(() => {
     let watchId = null;
 
     if (isTracking) {
