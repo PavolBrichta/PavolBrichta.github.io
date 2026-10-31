@@ -102,10 +102,11 @@ export default function Speedometer() {
           setAccuracy(position.coords.accuracy);
           setError(null);
         },
-        (err: any) => {
+        (err: GeolocationPositionError) => {
           switch (err.code) {
             case err.PERMISSION_DENIED:
               setError(t('speedometerErrorAccessDenied'));
+              setIsTracking(false);
               break;
             case err.POSITION_UNAVAILABLE:
               setError(t('speedometerErrorPositionUnavailable'));
@@ -116,7 +117,6 @@ export default function Speedometer() {
             default:
               setError(t('speedometerErrorUnknown'));
           }
-          setIsTracking(false);
         },
         options
       );
@@ -170,7 +170,10 @@ export default function Speedometer() {
         <div style={{ marginTop: '20px' }}>
           {!isTracking ? (
             <button 
-              onClick={() => setIsTracking(true)}
+              onClick={() => {
+                setError(null);
+                setIsTracking(true);
+              }}
               style={{ 
                 padding: '12px 24px', 
                 fontSize: '16px', 
@@ -181,7 +184,7 @@ export default function Speedometer() {
                 cursor: 'pointer' 
               }}
             >
-              {t('speedometerStartButton')}
+              {error ? t('speedometerRetryButton') : t('speedometerStartButton')}
             </button>
           ) : (
             <button 
