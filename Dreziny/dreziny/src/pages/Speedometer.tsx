@@ -128,12 +128,15 @@ export default function Speedometer() {
               break;
             case err.POSITION_UNAVAILABLE:
               setError(t('speedometerErrorPositionUnavailable'));
+              setIsTracking(false);
               break;
             case err.TIMEOUT:
               setError(t('speedometerErrorTimeout'));
+              setIsTracking(false);
               break;
             default:
               setError(t('speedometerErrorUnknown'));
+              setIsTracking(false);
           }
         },
         options
@@ -190,6 +193,8 @@ export default function Speedometer() {
             <button 
               onClick={() => {
                 setError(null);
+                setSpeed(0);
+                setAccuracy(null);
                 setIsTracking(true);
               }}
               style={{ 
